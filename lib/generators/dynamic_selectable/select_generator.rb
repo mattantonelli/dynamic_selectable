@@ -14,7 +14,7 @@ module DynamicSelectable
     private
     def route(parent, child)
       children = child.pluralize
-      "\t\tget ':#{parent}_id/#{children}', to: '#{children}#index', as: :#{children}\n"
+      "    get ':#{parent}_id/#{children}', to: '#{children}#index', as: :#{children}\n"
     end
 
     def controller_path(child)

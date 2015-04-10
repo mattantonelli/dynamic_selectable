@@ -4,7 +4,7 @@ module DynamicSelectable
 
     def create_route_namespace
       inject_into_file 'config/routes.rb',
-        "\tnamespace :dynamic_selectable do\n\tend\n\n",
+        "  namespace :dynamic_selectable do\n  end\n\n",
         after: "Rails.application.routes.draw do\n"
     end
 
