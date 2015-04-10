@@ -6,7 +6,7 @@ module DynamicSelectable
       module DynamicFormOptionsHelper
         def dynamic_collection_select(current, select_parent, select_child, collection, value_method, text_method,
                                       options, html_options)
-          select_url    = "select_#{select_child.to_s.pluralize}_path"
+          select_url    = "dynamic_selectable_#{select_child.to_s.pluralize}_path"
           parent_id     = ":#{select_parent}_id"
           select_target = "##{current}_#{select_child}_id"
 

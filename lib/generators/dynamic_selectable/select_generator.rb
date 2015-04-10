@@ -4,7 +4,7 @@ module DynamicSelectable
       :banner => "parent child value_method text_method [sort_col:asc/desc]"
 
     def create_route
-      inject_into_file 'config/routes.rb', route(*attributes.first(2)), after: "namespace :select do\n"
+      inject_into_file 'config/routes.rb', route(*attributes.first(2)), after: "namespace :dynamic_selectable do\n"
     end
 
     def create_controller_file
@@ -18,7 +18,7 @@ module DynamicSelectable
     end
 
     def controller_path(child)
-      "app/controllers/select/#{child.pluralize.underscore}_controller.rb"
+      "app/controllers/dynamic_selectable/#{child.pluralize.underscore}_controller.rb"
     end
 
     def controller_body(parent, child, val, text, sort)
@@ -28,10 +28,12 @@ module DynamicSelectable
       order = sort.present? ? ".order('#{sort.gsub(':', ' ')}')" : ''
 
       <<-END
-class Select::#{select_class}Controller < Select::SelectController
-  def index
-    #{children} = #{child_class}.where(#{parent}_id: params[:#{parent}_id]).select('#{val}, #{text}')#{order}
-    render json: #{children}
+module DynamicSelectable
+  class #{select_class}Controller < SelectController
+    def index
+      #{children} = #{child_class}.where(#{parent}_id: params[:#{parent}_id]).select('#{val}, #{text}')#{order}
+      render json: #{children}
+    end
   end
 end
       END
