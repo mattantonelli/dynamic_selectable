@@ -9,8 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Matt Antonelli']
   spec.email         = ['mattr.antonelli@gmail.com']
   spec.summary       = %q{Allows for easy dynamic population of cascading collection_select fields.}
-  spec.description   = ''
-  spec.homepage      = ''
+  spec.description   = 'DynamicSelectable will allow you to easily create collection_select fields
+                        with results that dynamically populate a related field.'
+  spec.homepage      = 'https://github.com/ATNI/dynamic_selectable'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
