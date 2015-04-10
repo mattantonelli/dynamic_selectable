@@ -8,7 +8,7 @@ module DynamicSelectable
     end
 
     def create_controller_file
-      create_file controller_path(attributes[1]), controller_body(*attributes)
+      create_file controller_path(attributes.second), controller_body(*attributes)
     end
 
     private
@@ -21,12 +21,16 @@ module DynamicSelectable
       "app/controllers/select/#{child.pluralize.underscore}_controller.rb"
     end
 
-    def controller_body(parent, child, value_method, text_method, sort)
+    def controller_body(parent, child, val, text, sort)
       children = child.pluralize
+      select_class = children.titleize.gsub(' ', '')
+      child_class = child.titleize.gsub(' ', '')
+      order = sort.present? ? ".order('#{sort.gsub(':', ' ')}')" : ''
+
       <<-END
-class Select::#{children.titleize.gsub(' ', '')}Controller < Select::SelectController
+class Select::#{select_class}Controller < Select::SelectController
   def index
-    #{children} = #{child.titleize.gsub(' ', '')}.where(#{parent}_id: params[:#{parent}_id]).select('#{value_method}, #{text_method}')#{sort.present? ? ".order('#{sort.gsub(':', ' ')}')" : ''}
+    #{children} = #{child_class}.where(#{parent}_id: params[:#{parent}_id]).select('#{val}, #{text}')#{order}
     render json: #{children}
   end
 end
