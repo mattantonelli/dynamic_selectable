@@ -1,5 +1,3 @@
-include ActionView::Helpers::FormOptionsHelper
-
 module DynamicSelectable
   module ActionView
     module Helpers
