@@ -11,7 +11,13 @@ module DynamicSelectable
           data_options = { data: { dynamic_selectable_url: send(select_url, parent_id),
                                    dynamic_selectable_target: select_target } }
 
-          collection_select(nil, nil, collection, value_method, text_method, options, html_options.merge(data_options))
+          if options[:submit_with_form] == true
+            submit_object = object
+            submit_method = method
+          end
+
+          collection_select(submit_object, submit_method, collection, value_method, text_method,
+                            options, html_options.merge(data_options))
         end
       end
     end
