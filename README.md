@@ -10,6 +10,8 @@ How about a use case? Let's say your application allowed users to look up parts 
 
 DynamicSelectable makes the above easy to do by providing a generator for your dynamic `collection_select` along with a new `FormHelper` method called `dynamic_collection_select`.
 
+To see this gem in action, you can check out the sample application [here](https://github.com/mattantonelli/dynamic-selectable-test).
+
 ## Updating from 0.0.2
 
 ***Warning:*** *If you are updating from `0.0.2` you will need to re-generate any content created with* `rails generate dynamic_selectable:select`.
