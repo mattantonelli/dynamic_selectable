@@ -8,10 +8,13 @@ module DynamicSelectable
           parent_id     = ":#{method}"
           select_target = "##{object}_#{dynamic_model}_id"
 
-          data_options = { data: { dynamic_selectable_url: send(select_url, parent_id),
-                                   dynamic_selectable_target: select_target } }
+          data = html_options.fetch(:data, {})
+          url, target = data.delete(:dynamic_selectable_url), data.delete(:dynamic_selectable_target)
 
-          data_options[:data].merge!(html_options.fetch(:data, {}))
+          data_options = { data: { dynamic_selectable_url:    url    || send(select_url, parent_id),
+                                   dynamic_selectable_target: target || select_target } }
+
+          data_options[:data].merge!(data)
 
           if options[:submit_with_form] == true
             submit_object = object
