@@ -107,7 +107,7 @@ A very simple form would look something like this:
 <%= form_for(@vehicle) do |f| %>
   <div>
     <%= label_tag :make_id %>
-    <%= dynamic_collection_select :vehicle, :make, :model, Make.all, :id, :name,
+    <%= dynamic_collection_select :vehicle, :make_id, :model, Make.all, :id, :name,
         { include_blank: true }, {} %>
   </div>
 
@@ -122,9 +122,9 @@ A very simple form would look something like this:
 
 That's it. Happy selecting!
 
-## Working with Ransack
+## Overriding data attributes
 
-By default, DynamicSelectable uses the `object` and `method` parameters of `dynamic_collection_select` to generate data attributes used by the gem's Javascript. However, if you are creating a form for a gem like [Ransack](https://github.com/activerecord-hackery/ransack), the values you provide for these parameters could prevent DynamicSelectable from generating the necessary data attributes properly. To resolve this, you will need to manually specify these attributes in a `data` hash within your tag's `html_options` hash. For example:
+By default, DynamicSelectable uses the `object` and `method` parameters of `dynamic_collection_select` to generate data attributes used by the gem's Javascript. Depending on your model, or if you are creating a form with a gem like [Ransack](https://github.com/activerecord-hackery/ransack), the values you provide for these parameters could prevent DynamicSelectable from generating the necessary data attributes properly. To resolve this, you can manually specify these attributes in a `data` hash within your tag's `html_options` hash. For example:
 
 ```html+erb
 <%= dynamic_collection_select :q, :make_id_eq, :model, Make.all, :id, :name,
