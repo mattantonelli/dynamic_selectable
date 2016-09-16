@@ -32,11 +32,11 @@ Run the gem's install generator:
 $ rails generate dynamic_selectable:install
 ```
 
-If you are using [Devise](https://github.com/plataformatec/devise) for user authentication, you will want to add a before_filter to skip authentication in the newly generated `app/controllers/select/select_controller.rb`:
+If you are using [Devise](https://github.com/plataformatec/devise) for user authentication, you will want to skip authentication in the newly generated `app/controllers/select/select_controller.rb`:
 
 ```ruby
 class DynamicSelectable::SelectController < ApplicationController
-  # skip_before_filter :authenticate_user!
+  # skip_before_action :authenticate_user!
 end
 ```
 
